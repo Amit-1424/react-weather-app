@@ -1,8 +1,43 @@
 .searchBox{
-    text-align: center;
+  display:flex;
+  justify-content:center;
+  margin-top:70px;
 }
 
-#city{
-    width: 25rem;
-    height: 1rem;
+.searchBox form{
+  width:380px;
+
+  padding:25px;
+
+  border-radius:20px;
+
+  background:rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(12px);
+
+  border:1px solid rgba(255,255,255,0.15);
+
+  box-shadow:0 10px 35px rgba(0,0,0,0.35);
+}
+
+.searchBox h2{
+  color:white;
+  text-align:center;
+}
+
+.MuiInputBase-input{
+  color:white !important;
+}
+
+.MuiInputLabel-root{
+  color:#d1d5db !important;
+}
+
+.MuiOutlinedInput-notchedOutline{
+  border-color:#9ca3af !important;
+}
+
+.MuiButton-root{
+  width:100%;
+  margin-top:15px;
 }
