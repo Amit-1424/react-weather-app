@@ -5,7 +5,7 @@ import { useState, useSyncExternalStore } from 'react';
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
 
-export default function SearchBox(){
+export default function SearchBox({updateInfo}){
 
     let [city, setCity] = useState("");
     
@@ -43,6 +43,8 @@ export default function SearchBox(){
         console.log({city})
         setCity("");
         let result = await getWeatherData();
+        updateInfo(result);
+
     }
 
     return (

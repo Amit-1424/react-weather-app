@@ -4,21 +4,10 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import "./InfoBox.css";
 
-export default function InfoBox(){
+export default function InfoBox({weatherInfo}){
 
-    let result = {
-        city: "Delhi",
-        country: "IN",
-        temp: 26.02,
-        feelsLike: 26.02,
-        tempMin: 26.02,
-        tempMax: 26.02,
-        humidity: 14,
-        pressure: 1013,
-        weather: "Clouds",
-        description: "few clouds",
-        windSpeed: 1.84
-    }
+    let result = weatherInfo;
+    console.log(result)
 
     return (
         <div className="infoBox">
