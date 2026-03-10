@@ -6,19 +6,7 @@ import "./WeatherApp.css"
 export default function WeatherApp(){
 
 
-    const [weatherInfo,setWeatherInfo] = useState({
-        city: "Delhi",
-        country: "IN",
-        temp: 26.02,
-        feelsLike: 26.02,
-        tempMin: 26.02,
-        tempMax: 26.02,
-        humidity: 14,
-        pressure: 1013,
-        weather: "Clouds",
-        description: "few clouds",
-        windSpeed: 1.84
-    })
+    const [weatherInfo,setWeatherInfo] = useState(null)
 
     let updateInfo = (result) => {
         setWeatherInfo(result);
@@ -27,8 +15,10 @@ export default function WeatherApp(){
     return(
         <div className="WeatherApp">
             <h2 >search real time weather information</h2>
+            
             <SearchBox updateInfo = {updateInfo} ></SearchBox>
-            <InfoBox weatherInfo = {weatherInfo} ></InfoBox>
+            {weatherInfo && <InfoBox weatherInfo={weatherInfo} />}
+            {!weatherInfo && <p>Search for a city to see weather information</p>}
         </div>
     )
 }

@@ -1,13 +1,14 @@
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import "./SearchBox.css"
-import { useState, useSyncExternalStore } from 'react';
+import { useState } from 'react';
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
 
 export default function SearchBox({updateInfo}){
 
     let [city, setCity] = useState("");
+    const [loading, setLoading] = useState(false);
     
     const API_URL = "https://api.openweathermap.org/data/2.5/weather"
 
@@ -16,6 +17,11 @@ export default function SearchBox({updateInfo}){
             `${API_URL}?q=${city}&appid=${API_KEY}&units=metric`
         );
         let jsonResponse = await response.json();
+
+        if(jsonResponse.cod !== 200){
+            alert("City not found");
+            return;
+        }
 
         let result = {
             city: jsonResponse.name,
@@ -40,11 +46,16 @@ export default function SearchBox({updateInfo}){
 
     let handleSubmit = async (event) => {
         event.preventDefault();
-        console.log({city})
-        setCity("");
-        let result = await getWeatherData();
-        updateInfo(result);
+        setLoading(true);
 
+        let result = await getWeatherData();
+
+        if(result){
+            updateInfo(result);
+        }
+
+        setLoading(false);
+        setCity("");
     }
 
     return (
@@ -52,7 +63,9 @@ export default function SearchBox({updateInfo}){
             <form onSubmit={handleSubmit} >
                 <TextField id="city" label="Search City" variant="outlined"  value={city}  onChange={handleChange} required/>
                 <br /><br />
-                <Button type='submit' variant="contained">search</Button>
+            <Button type="submit" variant="contained" disabled={loading}>
+                {loading ? "Searching..." : "Search"}
+            </Button>
             </form>
         </div>
     )
