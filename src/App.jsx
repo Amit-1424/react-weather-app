@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import './App.css'
 
+import SearchBox from "./SearchBox.jsx";
+
 function App() {
   return (
     <div className="main-cointainer">
-      <h1>welcome to weather app</h1>
+     <SearchBox> </SearchBox>
     </div>
   )
 }
